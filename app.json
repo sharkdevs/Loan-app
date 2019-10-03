@@ -1,0 +1,19 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "Heroku deployment for Loan App",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "Loan-app",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
