@@ -1,0 +1,33 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <p>welcome</p>
+  <div class="spacer"></div>
+  <div class="uimage">
+    <p class="name">Meshack</p>
+  </div>
+</div>
+
+<div class="content" role="main">
+
+  <!-- Overview -->
+  <h2>Loans Overview</h2>
+
+  <div class="card-container">
+    <app-card 
+      [cardIcon]="'monetization_on'"
+      [cardTitle]="'Total Loan Portforlio'"
+      [amount]="totalLoan"></app-card>
+    <app-card 
+      [cardIcon]="'money_off'"
+      [cardTitle]="'Loan Outstanding'"
+      [amount]="totalOutstanding"></app-card>
+    <app-card 
+      [cardIcon]="'account_balance_wallet'"
+      [cardTitle]="'Portforlio at Risk'"
+      [amount]="2305"></app-card>  </div>
+  <section class="table-section">
+    <app-loans-table [displayColumns]="displayColumns" [dataSource]="dataSource"></app-loans-table>
+  </section>
+  <input type="hidden" #selection>
+
+</div>

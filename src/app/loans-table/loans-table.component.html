@@ -1,0 +1,27 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Farmer Name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"><span class="dot"></span> {{element.firstName}} {{element.lastName}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="loanAmount">
+    <mat-header-cell *matHeaderCellDef> Total Loan Amt.
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }} 
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="outstanding">
+    <mat-header-cell *matHeaderCellDef> Total Loan Outstanding
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{calculateOutstandingLoan(element?.Loan) | currency:"Ksh" }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="arrears">
+    <mat-header-cell *matHeaderCellDef> Arrears
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+</mat-table>
