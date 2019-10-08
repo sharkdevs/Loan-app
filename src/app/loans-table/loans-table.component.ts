@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-loans-table',
@@ -6,25 +6,28 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loans-table.component.scss']
 })
 export class LoansTableComponent implements OnInit {
+  @Input() tableType: string;
+  @Input() columnNames: any;
   @Input() dataSource: [];
   @Input() displayColumns;
+  @Output() clickEvent: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
   calculateOutstandingLoan(data) {
-    console.log('outstanding data', data)
     let amount = 0;
     if(data != null)
     {
       data.Payments.map((payment) => {
         amount = amount + parseInt(payment.amountPaid);
-        console.log('outstanding amount', amount)
       });
       return data.amount - amount;
     }
     return 0;
   }
-
+  handleClick(event) {
+    this.clickEvent.emit(event);
+  }
 }

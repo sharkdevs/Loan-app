@@ -1,0 +1,10 @@
+<app-loans-table  
+  [tableType]="'table2'"
+  [columnNames]="columnNames"
+  class="loan-table-component" [displayColumns]="displayColumns" [dataSource]="dataSource"
+  (clickEvent)="handleClick($event)">
+</app-loans-table>
+<app-farmers-chart 
+  [chartName]="'Officer Perfomance'" [dataPoints$]="submitDataPoint$" class="loan-chart-component">
+</app-farmers-chart>
+

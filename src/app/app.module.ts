@@ -12,8 +12,14 @@ import { SidebarModule } from 'ng-sidebar';
 import { CardComponent } from './card/card.component';
 import { LoansTableComponent } from './loans-table/loans-table.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoanService } from 'src/services/loan.service';
+import { LoanService } from 'src/app/services/loan.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FarmersChartComponent } from './farmers-chart/farmers-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { LoanStatsHeaderComponent } from './loan-stats-header/loan-stats-header.component';
+import { ManagerService } from './services/manager.service';
+import { OfficerPerformanceComponent } from './officer-performance/officer-performance.component';
+
 
 @NgModule({
   declarations: [
@@ -21,13 +27,17 @@ import { HttpClientModule } from '@angular/common/http';
     CardComponent,
     LoansTableComponent,
     DashboardComponent,
+    FarmersChartComponent,
+    LoanStatsHeaderComponent,
+    OfficerPerformanceComponent,
   ],
   imports: [
-    HttpClientModule,
+  HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
+    ChartsModule,
     MatIconModule,
     SidebarModule.forRoot()
   ],
@@ -36,7 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatIconModule,
   ],
-  providers: [LoanService],
+  providers: [LoanService, ManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

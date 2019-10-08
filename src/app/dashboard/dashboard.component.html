@@ -12,21 +12,37 @@
   <!-- Overview -->
   <h2>Loans Overview</h2>
 
-  <div class="card-container">
-    <app-card 
-      [cardIcon]="'monetization_on'"
-      [cardTitle]="'Total Loan Portforlio'"
-      [amount]="totalLoan"></app-card>
-    <app-card 
-      [cardIcon]="'money_off'"
-      [cardTitle]="'Loan Outstanding'"
-      [amount]="totalOutstanding"></app-card>
-    <app-card 
-      [cardIcon]="'account_balance_wallet'"
-      [cardTitle]="'Portforlio at Risk'"
-      [amount]="2305"></app-card>  </div>
+  <app-loan-stats-header
+    [totalLoan]="totalLoan"
+    [totalOutstanding]="totalOutstanding"
+  ></app-loan-stats-header>
   <section class="table-section">
-    <app-loans-table [displayColumns]="displayColumns" [dataSource]="dataSource"></app-loans-table>
+    <ng-container 
+      *ngIf="isLoanPerformance || isFarmerPerformance; then thenTemplate; else displayOfficer"></ng-container>
+    <ng-template #thenTemplate>
+      <app-loans-table 
+        [tableType]="'table1'"
+        [columnNames]="columnNames"
+        class="loan-table-component" 
+        [displayColumns]="displayColumns" 
+        [dataSource]="dataSource"
+        (clickEvent)="handleClick($event)">
+      </app-loans-table>
+    </ng-template>
+    <ng-template #displayOfficer>
+      <app-officer-performance class="sect-officer"></app-officer-performance>
+    </ng-template>
+    
+    <ng-container *ngIf="isFarmerPerformance; then displayChart; else elseTemplate"></ng-container>
+    <ng-template #displayChart>
+      <app-farmers-chart 
+        [chartName]="'Farmer Perfomance'" [dataPoints$]="submitDataPoint$" class="loan-chart-component">
+      </app-farmers-chart>
+    </ng-template>
+    <ng-template #elseTemplate>
+      
+    </ng-template>
+    
   </section>
   <input type="hidden" #selection>
 
