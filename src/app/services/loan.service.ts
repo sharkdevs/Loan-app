@@ -8,9 +8,9 @@ export class LoanService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://localhost:3000/api/v1/';
+  base_url = 'https://loan-app-backend.herokuapp.com/api/v1/';
 
   getFarmers(){
-    return this.http.get(`${this.base_url}users`);
+    return this.http.get(`${this.base_url}farmers`);
   }
 }

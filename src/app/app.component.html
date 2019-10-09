@@ -13,15 +13,14 @@
       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
   </div>
   <div class="left-pills">
-    <span class="left-tab"> <a href="#">loan Performance</a></span>
-    <span class="left-tab"><a href="#">Officer Performance</a></span>
-    <span class="left-tab"><a href="#">Farmer Performance</a></span>
+    <a href="#" (click)="switchTab('loanPerformance')"><span class="left-tab"> Loan Performance</span></a>
+    <a href="#" (click)="switchTab('officerPerformance')"><span class="left-tab">Officer Performance</span></a>
+    <a href="#"(click)="switchTab('farmerPerformance')"><span class="left-tab">Farmer Performance</span></a>
   </div>
   </ng-sidebar>
 
     <div ng-sidebar-content>
-      
-      <app-dashboard></app-dashboard>
+      <app-dashboard [selectedTab$]="activeTab$"></app-dashboard>
   </div>
 </ng-sidebar-container>
 

@@ -2,14 +2,11 @@
   "name": "loan-app",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "npm run build",
-    "serve": "node ./server.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -23,10 +20,12 @@
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
+    "chart.js": "^2.8.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
     "ng-sidebar": "^9.1.1",
+    "ng2-charts": "^2.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

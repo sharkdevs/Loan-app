@@ -2,3 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+  .loan-table-component{
+    display: flex;
+    flex-grow: 200;
+  }
+  .loan-chart-component{
+    display: flex;
+    flex-grow: 200;
+  }
+
+  .table-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }

@@ -1,27 +1,63 @@
-<mat-table [dataSource]="dataSource">
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Farmer Name
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"><span class="dot"></span> {{element.firstName}} {{element.lastName}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="loanAmount">
-    <mat-header-cell *matHeaderCellDef> Total Loan Amt.
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }} 
-    </mat-cell>
-  </ng-container>
+<ng-container *ngIf="tableType == 'table1'; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.name}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"><span class="dot"></span> {{element.firstName}} {{element.lastName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loanAmount">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.totalLoan}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }}
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="outstanding">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.outstanding}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{calculateOutstandingLoan(element?.Loan) | currency:"Ksh" }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="arrears">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.arrears}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayColumns;" (click)="handleClick(row)"></mat-row>
+  </mat-table>
+</ng-template>
 
-  <ng-container matColumnDef="outstanding">
-    <mat-header-cell *matHeaderCellDef> Total Loan Outstanding
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{calculateOutstandingLoan(element?.Loan) | currency:"Ksh" }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="arrears">
-    <mat-header-cell *matHeaderCellDef> Arrears
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Loan?.amount || 0 | currency:"Ksh" }} </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
-</mat-table>
+
+
+
+<ng-template #elseTemplate>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.name}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"><span class="dot"></span> {{element.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loanAmount">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.totalLoan}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.totalLoan || 0 | currency:"Ksh" }}
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="outstanding">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.outstanding}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element?.loanOutstanding | currency:"Ksh" }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="arrears">
+      <mat-header-cell *matHeaderCellDef> {{columnNames.arrears}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.totalPaid || 10 | currency:"Ksh" }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayColumns;" (click)="handleClick(row)"></mat-row>
+  </mat-table>
+</ng-template>
